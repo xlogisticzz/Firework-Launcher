@@ -1,12 +1,21 @@
 package com.xlogisticzz.fireworkLauncher.blocks;
 
-import net.minecraft.block.Block;
+import java.util.List;
+
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 import com.xlogisticzz.fireworkLauncher.CreativeTabFireworkLauncher;
+import com.xlogisticzz.fireworkLauncher.items.ModItems;
 import com.xlogisticzz.fireworkLauncher.lib.Constants;
+import com.xlogisticzz.fireworkLauncher.tileEntities.TileEntityLauncher;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,16 +26,14 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author xLoGisTicZz. Some code may be from tutorials.
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class BlockLauncher extends Block {
+public class BlockLauncher extends BlockContainer {
     
     @SideOnly(Side.CLIENT)
-    Icon botIcon;
-    
+    private Icon botIcon;
     @SideOnly(Side.CLIENT)
-    Icon topIcon;
-    
+    private Icon topIcon;
     @SideOnly(Side.CLIENT)
-    Icon[] sideIcons;
+    private Icon[] sideIcons;
     
     public BlockLauncher(int par1) {
     
@@ -74,5 +81,68 @@ public class BlockLauncher extends Block {
                 
         }
         
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see net.minecraft.block.Block#damageDropped(int)
+     */
+    @Override
+    public int damageDropped(int metadata) {
+    
+        return metadata;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see net.minecraft.block.Block#getSubBlocks(int, net.minecraft.creativetab.CreativeTabs, java.util.List)
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+    public void getSubBlocks(int id, CreativeTabs par2CreativeTabs, List par3List) {
+    
+        for (int i = 0; i < Constants.Icons.BOX_SIDE.length; i++){
+            par3List.add(new ItemStack(id, 1, i));
+        }
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see net.minecraft.block.Block#onBlockActivated(net.minecraft.world.World, int, int, int, net.minecraft.entity.player.EntityPlayer, int, float, float, float)
+     */
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    
+        if (player.isSneaking()){
+            return false;
+        }else{
+            if (world.getBlockId(x, y, z) == ModBlocks.launcherBlock.blockID){
+                int meta = world.getBlockMetadata(x, y, z);
+                if (meta == 0){
+                    return false;
+                }
+                if (player.inventory.getCurrentItem() != null){
+                    if (player.inventory.getCurrentItem().getItemDamage() + 1 == meta){
+                        return false;
+                    }
+                }
+                ItemStack item = new ItemStack(ModItems.card, 1, meta - 1);
+                player.inventory.addItemStackToInventory(item);
+                world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+            }
+            
+            return true;
+        }
+    }
+    
+    
+    /*
+     * (non-Javadoc)
+     * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World)
+     */
+    @Override
+    public TileEntity createNewTileEntity(World world) {
+    
+        return new TileEntityLauncher();
     }
 }

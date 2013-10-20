@@ -2,11 +2,12 @@ package com.xlogisticzz.fireworkLauncher.blocks;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import com.xlogisticzz.fireworkLauncher.items.ItemLauncher;
 import com.xlogisticzz.fireworkLauncher.lib.Constants;
 import com.xlogisticzz.fireworkLauncher.lib.Ids;
+import com.xlogisticzz.fireworkLauncher.tileEntities.TileEntityLauncher;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 /**
  * Firework Launcher
@@ -27,9 +28,9 @@ public class ModBlocks {
     public static void initInfo() {
     
         // Titanium Ore Details
-        LanguageRegistry.addName(launcherBlock, Constants.BlockNames.FIREWORK_LAUNCHER_NAME);
         MinecraftForge.setBlockHarvestLevel(launcherBlock, "pickaxe", 2);
-        GameRegistry.registerBlock(launcherBlock, Constants.UnLocalisedNames.BOX);
+        GameRegistry.registerBlock(launcherBlock, ItemLauncher.class, Constants.UnLocalisedNames.BOX);
+        GameRegistry.registerTileEntity(TileEntityLauncher.class, Constants.UnLocalisedNames.BOX + "TileEntity");
         
     }
 }

@@ -25,6 +25,9 @@ public class ConfigurationHandler {
         // Blocks
         Ids.BLOCKLAUNCHER = configuration.getBlock(Configuration.CATEGORY_BLOCK, "Firework Launcher ID", Ids.BLOCKLAUNCHER_DEFAULT).getInt();
         
+        // Item IDs
+        Ids.CARD = configuration.getItem(Configuration.CATEGORY_ITEM, "Card ID", Ids.CARD_DEFAULT).getInt() - 256;
+        
         configuration.save();
         
     }

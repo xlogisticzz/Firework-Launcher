@@ -14,8 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderRocket extends Render {
     
-    // TODO replace "example" with wherever you store it, it works the same as the naming for item and block icons
-    private static final ResourceLocation[] textures = new ResourceLocation[] { new ResourceLocation("fireworkLauncher", "textures/models/rocket1.png"), new ResourceLocation("fireworkLauncher", "textures/models/rocket23.png"), new ResourceLocation("fireworkLauncher", "textures/models/rocket3.png") };
+    private static final ResourceLocation[] textures = new ResourceLocation[] { new ResourceLocation("fireworkLauncher", "textures/models/rocket1.png"), new ResourceLocation("fireworkLauncher", "textures/models/rocket2.png"), new ResourceLocation("fireworkLauncher", "textures/models/rocket3.png") };
     
     protected ModelRocket model;
     
@@ -58,6 +57,8 @@ public class RenderRocket extends Render {
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
     
+        
+        
         return textures[0];
     }
 }

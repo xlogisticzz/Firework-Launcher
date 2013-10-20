@@ -26,7 +26,7 @@ public class Constants {
     
     public static class BlockNames {
         
-        public static final String FIREWORK_LAUNCHER_NAME = "Firework Launcher";
+        public static final String[] FIREWORK_LAUNCHER_NAME = { "Disabled Firework Launcher", "Red Firework Launcher", "Green Firework Launcher", "Blue Firework Launcher" };
         
     }
     
@@ -44,7 +44,7 @@ public class Constants {
         // Blocks
         public static final String BOX_TOP = "box_top";
         public static final String BOX_BOT = "box_bot";
-        public static final String[] BOX_SIDE = { "box_side_type1", "box_side_type2", "box_side_type3" };
+        public static final String[] BOX_SIDE = { "box_side_type0", "box_side_type1", "box_side_type2", "box_side_type3" };
         
     }
     

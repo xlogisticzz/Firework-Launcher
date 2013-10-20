@@ -12,4 +12,8 @@ public class Ids {
     
     public static final int BLOCKLAUNCHER_DEFAULT = 1000;
     
+    public static int CARD;
+    
+    public static final int CARD_DEFAULT = 6000;
+    
 }

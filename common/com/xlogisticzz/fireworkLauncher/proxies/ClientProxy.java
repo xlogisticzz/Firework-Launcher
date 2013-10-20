@@ -1,5 +1,10 @@
 package com.xlogisticzz.fireworkLauncher.proxies;
 
+import com.xlogisticzz.fireworkLauncher.client.RenderRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
+
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
 /**
  * Firework Launcher
  * 
@@ -24,6 +29,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initRenderers() {
     
+        RenderingRegistry.registerEntityRenderingHandler(EntityRocket.class, new RenderRocket());
+        
     }
     
 }
