@@ -45,10 +45,6 @@ public class ModelRocket extends ModelBase {
         
     }
     
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.client.model.ModelBase#render(net.minecraft.entity.Entity, float, float, float, float, float, float)
-     */
     @Override
     public void render(Entity entity, float val1, float val2, float val3, float val4, float val5, float mult) {
     

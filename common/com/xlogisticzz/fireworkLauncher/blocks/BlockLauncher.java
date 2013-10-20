@@ -135,7 +135,6 @@ public class BlockLauncher extends BlockContainer {
         }
     }
     
-    
     /*
      * (non-Javadoc)
      * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World)
@@ -143,6 +142,7 @@ public class BlockLauncher extends BlockContainer {
     @Override
     public TileEntity createNewTileEntity(World world) {
     
-        return new TileEntityLauncher();
+        TileEntityLauncher tile = new TileEntityLauncher();
+        return tile;
     }
 }

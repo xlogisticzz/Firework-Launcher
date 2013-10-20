@@ -14,7 +14,7 @@ public class EntityRocket extends Entity {
     
     private int startPosY;
     public int fireworkAge = 0;
-    public int type = 0;
+    private int type = 0;
     
     public EntityRocket(World par1World) {
     
@@ -29,13 +29,15 @@ public class EntityRocket extends Entity {
     protected void entityInit() {
     
     }
+    public void setType(int par1){
+        this.type = par1;
+    }
+    public void setlaunchPos(double x, double y, double z) {
     
-    public void setlaunchPos(double x, double y, double z, int type1) {
-        
         this.startPosY = (int) y;
-        this.type = type1;
         this.setPosition(x, y, z);
     }
+    
     /*
      * (non-Javadoc)
      * @see net.minecraft.entity.Entity#readEntityFromNBT(net.minecraft.nbt.NBTTagCompound)
@@ -44,6 +46,8 @@ public class EntityRocket extends Entity {
     protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
     
         this.startPosY = nbttagcompound.getInteger("StartPosY");
+        this.fireworkAge = nbttagcompound.getInteger("Age");
+        this.setType(nbttagcompound.getInteger("Type"));
         
     }
     
@@ -53,47 +57,56 @@ public class EntityRocket extends Entity {
      */
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
+    
         nbttagcompound.setInteger("StartPosY", this.startPosY);
+        nbttagcompound.setInteger("Age", this.startPosY);
+        nbttagcompound.setInteger("Type", this.startPosY);
 
+        
     }
     
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.entity.Entity#onUpdate()
      */
     @Override
     public void onUpdate() {
-        
+    
         super.onUpdate();
         
-        
         if (!this.worldObj.isRemote){
-                this.motionY = 0.4F;
-            if ((int)this.posY == (this.startPosY + 10)){
-                worldObj.createExplosion(this, posX, posY, posZ, 3.0F, true);
+           this.motionY = 0.4F;
+            if ((int) this.posY == this.startPosY + 10){
+                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0F, true);
                 this.setDead();
             }
             
         }
-        if (this.worldObj.isRemote && this.fireworkAge % 2 < 2)
-        {
+        if (this.worldObj.isRemote && this.fireworkAge % 2 < 2){
             this.worldObj.spawnParticle("fireworksSpark", this.posX, this.posY - 0.3D, this.posZ, this.rand.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.rand.nextGaussian() * 0.05D);
         }
-        ++fireworkAge;
+        ++this.fireworkAge;
         setPosition(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
         
     }
     
-    public void spawnParticles(){
-        for(int i = 0; i < 2; i++){
-            float partX = (float) (posX + rand.nextFloat());
-            float partY = (float) (posY + rand.nextFloat());
-            float partZ = (float) (posZ + rand.nextFloat());
+    public void spawnParticles() {
+    
+        for (int i = 0; i < 2; i++){
+            float partX = (float) (this.posX + this.rand.nextFloat());
+            float partY = (float) (this.posY + this.rand.nextFloat());
+            float partZ = (float) (this.posZ + this.rand.nextFloat());
             
-            float partMotionX = -0.5F + rand.nextFloat();
-            float partMotionY = -0.5F + rand.nextFloat();
-            float partMotionZ = -0.5F + rand.nextFloat();
+            float partMotionX = -0.5F + this.rand.nextFloat();
+            float partMotionY = -0.5F + this.rand.nextFloat();
+            float partMotionZ = -0.5F + this.rand.nextFloat();
             
-            worldObj.spawnParticle("explosion", partX, partY, partZ, partMotionX / 4 , partMotionY / 4, partMotionZ / 4);
+            this.worldObj.spawnParticle("explosion", partX, partY, partZ, partMotionX / 4, partMotionY / 4, partMotionZ / 4);
         }
+    }
+
+    public int getType() {
+    
+        return type;
     }
 }
