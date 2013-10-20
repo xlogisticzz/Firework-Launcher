@@ -57,8 +57,8 @@ public class RenderRocket extends Render {
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
     
+        EntityRocket entity1 =  (EntityRocket) entity;
         
-        
-        return textures[0];
+        return textures[entity1.type];
     }
 }

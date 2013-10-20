@@ -30,10 +30,10 @@ public class EntityRocket extends Entity {
     
     }
     
-    public void setlaunchPos(double x, double y, double z) {
+    public void setlaunchPos(double x, double y, double z, int type1) {
         
         this.startPosY = (int) y;
-        
+        this.type = type1;
         this.setPosition(x, y, z);
     }
     /*
@@ -68,7 +68,7 @@ public class EntityRocket extends Entity {
         
         if (!this.worldObj.isRemote){
                 this.motionY = 0.4F;
-            if ((int)this.posY == (this.startPosY + 40)){
+            if ((int)this.posY == (this.startPosY + 10)){
                 worldObj.createExplosion(this, posX, posY, posZ, 3.0F, true);
                 this.setDead();
             }

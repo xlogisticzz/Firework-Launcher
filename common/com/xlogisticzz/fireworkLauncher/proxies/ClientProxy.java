@@ -1,6 +1,7 @@
 package com.xlogisticzz.fireworkLauncher.proxies;
 
 import com.xlogisticzz.fireworkLauncher.client.RenderRocket;
+import com.xlogisticzz.fireworkLauncher.client.sounds.SoundHandler;
 import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -20,6 +21,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initSounds() {
     
+        new SoundHandler();
     }
     
     /*

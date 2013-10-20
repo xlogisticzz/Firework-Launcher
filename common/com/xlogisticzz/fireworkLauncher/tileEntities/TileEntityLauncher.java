@@ -2,6 +2,7 @@ package com.xlogisticzz.fireworkLauncher.tileEntities;
 
 import java.util.Random;
 
+import com.xlogisticzz.fireworkLauncher.client.sounds.Sounds;
 import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,11 +30,11 @@ public class TileEntityLauncher extends TileEntity{
             if(timer % 240 == 0){
                 
                 EntityRocket rocket = new EntityRocket(worldObj);
-                
-                rocket.setlaunchPos(xCoord + 0.5F, yCoord, zCoord +0.5F);
+                int id = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                rocket.setlaunchPos(xCoord + 0.5F, yCoord, zCoord +0.5F, id -1);
                 
                 worldObj.spawnEntityInWorld(rocket);
-                
+                Sounds.LAUNCH.play(xCoord, yCoord, zCoord, 1, 0);
                 
                 timer = 0;
             }  
