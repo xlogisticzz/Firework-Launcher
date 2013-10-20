@@ -18,12 +18,12 @@
 		<link>
 			<name>common</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/Firework Launcher/common</locationURI>
+			<location>D:/MCDev/Eclipse Workspace/Firework Launcher/common</location>
 		</link>
 		<link>
 			<name>resources</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/Firework Launcher/resources</locationURI>
+			<location>D:/MCDev/Eclipse Workspace/Firework Launcher/resources</location>
 		</link>
 	</linkedResources>
 </projectDescription>
