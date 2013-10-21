@@ -14,38 +14,38 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderRocket extends Render {
     
-    private static final ResourceLocation[] textures = new ResourceLocation[] { new ResourceLocation("fireworklauncher", "textures/models/rocket1.png"), new ResourceLocation("fireworklauncher", "textures/models/rocket2.png"), new ResourceLocation("fireworklauncher", "textures/models/rocket3.png") };
+    public static final ResourceLocation[] textures = new ResourceLocation[] { new ResourceLocation("fireworklauncher", "textures/models/rocket1.png"), new ResourceLocation("fireworklauncher", "textures/models/rocket2.png"), new ResourceLocation("fireworklauncher", "textures/models/rocket3.png") };
     
     protected ModelRocket model;
-
+    
     public RenderRocket() {
-        shadowSize = 0.5F;
-        model = new ModelRocket();
+    
+        this.shadowSize = 0.5F;
+        this.model = new ModelRocket();
     }
-
-    public void renderRocket(EntityRocket rocket, double x, double y, double z, float yaw, float partialTickTime)
-    {
+    
+    public void renderRocket(EntityRocket rocket, double x, double y, double z, float yaw, float partialTickTime) {
+    
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)x, (float)y, (float)z);
+        GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
-        GL11.glScalef(-1.0F, -1.0F, 1.0F);     
-
+        GL11.glScalef(-1.0F, -1.0F, 1.0F);
         
-        this.bindTexture(textures[((EntityRocket) rocket).getType()]);
+        this.getEntityTexture(rocket);
         
-        model.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        this.model.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         
         GL11.glPopMatrix();
     }
-
-
-    /* (non-Javadoc)
+    
+    /*
+     * (non-Javadoc)
      * @see net.minecraft.client.renderer.entity.Render#doRender(net.minecraft.entity.Entity, double, double, double, float, float)
      */
     @Override
-    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime)
-    {
-        this.renderRocket((EntityRocket)entity, x, y, z, yaw, partialTickTime);
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
+    
+        this.renderRocket((EntityRocket) entity, x, y, z, yaw, partialTickTime);
     }
     
     // TODO return the correct id depending on the firework type
@@ -56,6 +56,7 @@ public class RenderRocket extends Render {
      */
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-        return textures[((EntityRocket) entity).getType()];
+    
+        return textures[1];
     }
 }

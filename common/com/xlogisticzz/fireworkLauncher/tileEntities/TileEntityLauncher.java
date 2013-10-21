@@ -7,6 +7,9 @@ import net.minecraft.tileentity.TileEntity;
 
 import com.xlogisticzz.fireworkLauncher.client.sounds.Sounds;
 import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityRocketBlue;
+import com.xlogisticzz.fireworkLauncher.entities.EntityRocketGreen;
+import com.xlogisticzz.fireworkLauncher.entities.EntityRocketRed;
 
 /**
  * Firework Launcher
@@ -19,6 +22,7 @@ public class TileEntityLauncher extends TileEntity {
     private int timer;
     private Random rand = new Random();
     public int type;
+    public EntityRocket rocket;
     
     /*
      * (non-Javadoc)
@@ -26,19 +30,36 @@ public class TileEntityLauncher extends TileEntity {
      */
     @Override
     public void updateEntity() {
-        
-        if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord) > 0){
+    
+        if (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord) > 0){
             if (!this.worldObj.isRemote){
                 this.timer++;
                 if (this.timer % 240 == 0){
                     
+                    this.type = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
+                    switch (this.type) {
+                        case 0 :
+                            this.rocket = new EntityRocketRed(this.worldObj);
+                            
+                            break;
+                        
+                        case 1 :
+                            this.rocket = new EntityRocketGreen(this.worldObj);
+                            
+                            break;
+                        
+                        case 2 :
+                            this.rocket = new EntityRocketBlue(this.worldObj);
+                            
+                            break;
+                        
+                        default :
+                            this.rocket = new EntityRocketBlue(this.worldObj);
+                            break;
+                    }
+                    this.rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord, this.zCoord + 0.5F);
                     
-                    type =  worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-                    EntityRocket rocket = new EntityRocket(this.worldObj);
-                    rocket.setType(type);
-                    rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord + 2, this.zCoord + 0.5F);
-                    
-                    this.worldObj.spawnEntityInWorld(rocket);
+                    this.worldObj.spawnEntityInWorld(this.rocket);
                     Sounds.LAUNCH.play(this.xCoord, this.yCoord, this.zCoord, 1, 0);
                     
                     this.timer = 0;
@@ -51,7 +72,7 @@ public class TileEntityLauncher extends TileEntity {
     }
     
     public void spawnParticles() {
-        
+    
         for (int i = 0; i < 2; i++){
             float partX = this.xCoord + this.rand.nextFloat();
             float partY = this.yCoord + this.rand.nextFloat();
@@ -71,7 +92,7 @@ public class TileEntityLauncher extends TileEntity {
      */
     @Override
     public void readFromNBT(NBTTagCompound comp) {
-        
+    
         super.readFromNBT(comp);
         
         this.timer = comp.getByte("Timer");
@@ -83,7 +104,7 @@ public class TileEntityLauncher extends TileEntity {
      */
     @Override
     public void writeToNBT(NBTTagCompound comp) {
-        
+    
         super.writeToNBT(comp);
         
         comp.setByte("Timer", (byte) this.timer);

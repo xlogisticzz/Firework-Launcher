@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 /**
- * Learning Modding Mod
+ * Firework Launcher
  * 
  * @author xLoGisTicZz. Some code may be from tutorials.
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
@@ -14,7 +14,6 @@ public class EntityRocket extends Entity {
     
     private int startPosY;
     public int fireworkAge = 0;
-    private int type = 0;
     
     public EntityRocket(World par1World) {
     
@@ -29,9 +28,7 @@ public class EntityRocket extends Entity {
     protected void entityInit() {
     
     }
-    public void setType(int par1){
-        this.type = par1;
-    }
+    
     public void setlaunchPos(double x, double y, double z) {
     
         this.startPosY = (int) y;
@@ -47,7 +44,6 @@ public class EntityRocket extends Entity {
     
         this.startPosY = nbttagcompound.getInteger("StartPosY");
         this.fireworkAge = nbttagcompound.getInteger("Age");
-        this.setType(nbttagcompound.getInteger("Type"));
         
     }
     
@@ -60,8 +56,6 @@ public class EntityRocket extends Entity {
     
         nbttagcompound.setInteger("StartPosY", this.startPosY);
         nbttagcompound.setInteger("Age", this.startPosY);
-        nbttagcompound.setInteger("Type", this.startPosY);
-
         
     }
     
@@ -75,7 +69,7 @@ public class EntityRocket extends Entity {
         super.onUpdate();
         
         if (!this.worldObj.isRemote){
-           this.motionY = 0.4F;
+            this.motionY = 0.4F;
             if ((int) this.posY == this.startPosY + 10){
                 this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0F, true);
                 this.setDead();
@@ -104,9 +98,5 @@ public class EntityRocket extends Entity {
             this.worldObj.spawnParticle("explosion", partX, partY, partZ, partMotionX / 4, partMotionY / 4, partMotionZ / 4);
         }
     }
-
-    public int getType() {
     
-        return type;
-    }
 }
