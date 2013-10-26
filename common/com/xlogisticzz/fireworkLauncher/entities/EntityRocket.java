@@ -14,10 +14,20 @@ public class EntityRocket extends Entity {
     
     private int startPosY;
     public int fireworkAge = 0;
+    public int type;
     
     public EntityRocket(World par1World) {
     
         super(par1World);
+                
+    }
+    
+    public void setType(int type1){
+        this.type = type1;
+    }
+    
+    public int getType(){
+        return type;
     }
     
     /*

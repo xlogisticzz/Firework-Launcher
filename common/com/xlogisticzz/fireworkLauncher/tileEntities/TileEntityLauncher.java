@@ -7,9 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 
 import com.xlogisticzz.fireworkLauncher.client.sounds.Sounds;
 import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
-import com.xlogisticzz.fireworkLauncher.entities.EntityRocketBlue;
-import com.xlogisticzz.fireworkLauncher.entities.EntityRocketGreen;
-import com.xlogisticzz.fireworkLauncher.entities.EntityRocketRed;
 
 /**
  * Firework Launcher
@@ -22,8 +19,7 @@ public class TileEntityLauncher extends TileEntity {
     private int timer;
     private Random rand = new Random();
     public int type;
-    public EntityRocket rocket;
-    
+
     /*
      * (non-Javadoc)
      * @see net.minecraft.tileentity.TileEntity#updateEntity()
@@ -36,30 +32,28 @@ public class TileEntityLauncher extends TileEntity {
                 this.timer++;
                 if (this.timer % 240 == 0){
                     
-                    this.type = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
+                    this.type = (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord) - 1);
+                    EntityRocket rocket = new EntityRocket(worldObj);
                     switch (this.type) {
                         case 0 :
-                            this.rocket = new EntityRocketRed(this.worldObj);
-                            
+                            rocket.setType(0);
                             break;
                         
                         case 1 :
-                            this.rocket = new EntityRocketGreen(this.worldObj);
-                            
+                            rocket.setType(1);
                             break;
                         
                         case 2 :
-                            this.rocket = new EntityRocketBlue(this.worldObj);
-                            
+                            rocket.setType(2);
                             break;
                         
                         default :
-                            this.rocket = new EntityRocketBlue(this.worldObj);
+                            rocket.setType(0);
                             break;
                     }
-                    this.rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord, this.zCoord + 0.5F);
+                    rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord, this.zCoord + 0.5F);
                     
-                    this.worldObj.spawnEntityInWorld(this.rocket);
+                    this.worldObj.spawnEntityInWorld(rocket);
                     Sounds.LAUNCH.play(this.xCoord, this.yCoord, this.zCoord, 1, 0);
                     
                     this.timer = 0;

@@ -31,7 +31,7 @@ public class RenderRocket extends Render {
         GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         
-        this.getEntityTexture(rocket);
+        this.bindEntityTexture(rocket);
         
         this.model.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         
@@ -57,6 +57,6 @@ public class RenderRocket extends Render {
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
     
-        return textures[1];
+        return textures[((EntityRocket)entity).getType()];
     }
 }
