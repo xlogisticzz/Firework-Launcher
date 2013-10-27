@@ -1,8 +1,12 @@
 package com.xlogisticzz.fireworkLauncher.proxies;
 
-import com.xlogisticzz.fireworkLauncher.client.RenderRocket;
+import com.xlogisticzz.fireworkLauncher.client.RenderRocketBlue;
+import com.xlogisticzz.fireworkLauncher.client.RenderRocketGreen;
+import com.xlogisticzz.fireworkLauncher.client.RenderRocketRed;
 import com.xlogisticzz.fireworkLauncher.client.sounds.SoundHandler;
-import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityBlueRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityGreenRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityRedRocket;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -31,7 +35,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initRenderers() {
     
-        RenderingRegistry.registerEntityRenderingHandler(EntityRocket.class, new RenderRocket());
+        RenderingRegistry.registerEntityRenderingHandler(EntityRedRocket.class, new RenderRocketRed());
+        RenderingRegistry.registerEntityRenderingHandler(EntityGreenRocket.class, new RenderRocketGreen());
+        RenderingRegistry.registerEntityRenderingHandler(EntityBlueRocket.class, new RenderRocketBlue());
 
         
     }

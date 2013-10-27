@@ -6,6 +6,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 import com.xlogisticzz.fireworkLauncher.client.sounds.Sounds;
+import com.xlogisticzz.fireworkLauncher.entities.EntityBlueRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityGreenRocket;
+import com.xlogisticzz.fireworkLauncher.entities.EntityRedRocket;
 import com.xlogisticzz.fireworkLauncher.entities.EntityRocket;
 
 /**
@@ -19,6 +22,7 @@ public class TileEntityLauncher extends TileEntity {
     private int timer;
     private Random rand = new Random();
     public int type;
+    public EntityRocket rocket;
 
     /*
      * (non-Javadoc)
@@ -33,22 +37,21 @@ public class TileEntityLauncher extends TileEntity {
                 if (this.timer % 240 == 0){
                     
                     this.type = (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord) - 1);
-                    EntityRocket rocket = new EntityRocket(worldObj);
                     switch (this.type) {
                         case 0 :
-                            rocket.setType(0);
+                            rocket = new EntityRedRocket(worldObj);
                             break;
                         
                         case 1 :
-                            rocket.setType(1);
+                            rocket = new EntityGreenRocket(worldObj);
                             break;
                         
                         case 2 :
-                            rocket.setType(2);
+                            rocket = new EntityBlueRocket(worldObj);
                             break;
                         
                         default :
-                            rocket.setType(0);
+                            rocket = new EntityRedRocket(worldObj);
                             break;
                     }
                     rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord, this.zCoord + 0.5F);

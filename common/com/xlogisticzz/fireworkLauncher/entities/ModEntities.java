@@ -14,7 +14,10 @@ public class ModEntities {
     
     public static void init() {
     
-        EntityRegistry.registerModEntity(EntityRocket.class, "EntityRocket", 1, FireworkLauncher.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityRedRocket.class, "EntityRedRocket", 1, FireworkLauncher.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityGreenRocket.class, "EntityGreenRocket", 2, FireworkLauncher.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityBlueRocket.class, "EntityBlueRocket", 3, FireworkLauncher.instance, 80, 3, true);
+
     }
     
     public static void initInfo() {
