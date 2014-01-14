@@ -1,11 +1,8 @@
-private.properties
-environment.properties
-.DS_Store
-.DS_Store?
-.Spotlight-V100
-.Trashes
-/bin
-Keystore
-/.git
-/.settings
-/eclipse/bin
+/.gradle
+/build
+/eclipse
+/files
+/out
+Forge 1.6.4.iml
+Forge 1.6.4.ipr
+Forge 1.6.4.iws

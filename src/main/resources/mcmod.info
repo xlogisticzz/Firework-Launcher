@@ -1,0 +1,20 @@
+[
+{
+  "modid": "FireworkLauncher",
+  "name": "Firework Launcher",
+  "description": "A Firework Launcher that is made as part of VSWE's summer courses",
+  "version": "0.162.1.1",
+  "url": "www.github.com/logisticzz",
+  "updateUrl": "",
+  "authorList": [
+    "xLoGisTicZz"
+  ],
+  "credits": "Vswe for his summer courses",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
