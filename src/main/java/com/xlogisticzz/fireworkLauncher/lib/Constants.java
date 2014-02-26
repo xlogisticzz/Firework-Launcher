@@ -10,7 +10,7 @@ public class Constants {
     
     public class Mod {
         
-        public static final String MODID = "fireworkLauncher";
+        public static final String MODID = "fireworklauncher";
         public static final String NAME = "Firework Launcher";
         public static final String VERSION = "@VERSION@ (build @BUILD_NUMBER@)";
         public static final String FINGERPRINT = "@FINGERPRINT@";
@@ -23,18 +23,7 @@ public class Constants {
         public static final String COMMON = "com.xlogisticzz.fireworkLauncher.proxies.CommonProxy";
         
     }
-    
-    public static class BlockNames {
-        
-        public static final String[] FIREWORK_LAUNCHER_NAME = { "Disabled Firework Launcher", "Red Firework Launcher", "Green Firework Launcher", "Blue Firework Launcher" };
-        
-    }
-    
-    public static class ItemNames {
-        
-        public static final String[] FIREWORK_CARD_NAME = { "Red Firework", "Green Firework", "Blue Firework" };
-        
-    }
+
     
     public static class Icons {
         
@@ -55,9 +44,5 @@ public class Constants {
         
         // Blocks
         public static final String BOX = "box";
-    }
-    
-    public class Particles {
-        
     }
 }

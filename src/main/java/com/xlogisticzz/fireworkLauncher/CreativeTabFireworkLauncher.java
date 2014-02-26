@@ -1,6 +1,7 @@
 package com.xlogisticzz.fireworkLauncher;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -17,8 +18,17 @@ public class CreativeTabFireworkLauncher {
         /* Tab Icon */
         @Override
         public ItemStack getIconItemStack() {
-        
-            return new ItemStack(Item.firework, 1, 0);
+            return new ItemStack(Items.fireworks, 1, 0);
+        }
+
+        @Override
+        public Item getTabIconItem() {
+            return Items.fireworks;
+        }
+
+        @Override
+        public int func_151243_f() {
+            return 1;
         }
     };
 }

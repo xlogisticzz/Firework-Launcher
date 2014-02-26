@@ -2,10 +2,10 @@ package com.xlogisticzz.fireworkLauncher.tileEntities;
 
 import java.util.Random;
 
+import com.xlogisticzz.fireworkLauncher.client.sounds.SoundHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import com.xlogisticzz.fireworkLauncher.client.sounds.Sounds;
 import com.xlogisticzz.fireworkLauncher.entities.EntityBlueRocket;
 import com.xlogisticzz.fireworkLauncher.entities.EntityGreenRocket;
 import com.xlogisticzz.fireworkLauncher.entities.EntityRedRocket;
@@ -24,10 +24,6 @@ public class TileEntityLauncher extends TileEntity {
     public int type;
     public EntityRocket rocket;
 
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.tileentity.TileEntity#updateEntity()
-     */
     @Override
     public void updateEntity() {
     
@@ -57,8 +53,8 @@ public class TileEntityLauncher extends TileEntity {
                     rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord, this.zCoord + 0.5F);
                     
                     this.worldObj.spawnEntityInWorld(rocket);
-                    Sounds.LAUNCH.play(this.xCoord, this.yCoord, this.zCoord, 1, 0);
-                    
+                    SoundHandler.playSoundInWorld(worldObj, (double) xCoord, (double) yCoord, (double) zCoord, "launch", 1, 0, false);
+
                     this.timer = 0;
                 }
             }

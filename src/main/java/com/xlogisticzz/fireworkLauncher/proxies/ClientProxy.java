@@ -20,7 +20,7 @@ public class ClientProxy extends CommonProxy {
     
     /*
      * (non-Javadoc)
-     * @see com.xlogisticzz.fireworkLauncher.proxies.CommonProxy#initSounds()
+     * @see com.xlogisticzz.fireworklauncher.proxies.CommonProxy#initSounds()
      */
     @Override
     public void initSounds() {
@@ -30,7 +30,7 @@ public class ClientProxy extends CommonProxy {
     
     /*
      * (non-Javadoc)
-     * @see com.xlogisticzz.fireworkLauncher.proxies.CommonProxy#initRenderers()
+     * @see com.xlogisticzz.fireworklauncher.proxies.CommonProxy#initRenderers()
      */
     @Override
     public void initRenderers() {

@@ -19,10 +19,7 @@ public class RenderRocketRed extends RenderRocket {
     public RenderRocketRed() {
     
     }
-    
-    /* (non-Javadoc)
-     * @see com.xlogisticzz.fireworkLauncher.client.RenderRocket#getEntityTexture(net.minecraft.entity.Entity)
-     */
+
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
     

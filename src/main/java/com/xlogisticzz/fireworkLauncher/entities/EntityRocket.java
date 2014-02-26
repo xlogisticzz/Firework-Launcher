@@ -20,11 +20,7 @@ public class EntityRocket extends Entity {
         super(par1World);
                 
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.entity.Entity#entityInit()
-     */
+
     @Override
     protected void entityInit() {
     
@@ -35,11 +31,7 @@ public class EntityRocket extends Entity {
         this.startPosY = (int) y;
         this.setPosition(x, y, z);
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.entity.Entity#readEntityFromNBT(net.minecraft.nbt.NBTTagCompound)
-     */
+
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
     
@@ -47,11 +39,7 @@ public class EntityRocket extends Entity {
         this.fireworkAge = nbttagcompound.getInteger("Age");
         
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.entity.Entity#writeEntityToNBT(net.minecraft.nbt.NBTTagCompound)
-     */
+
     @Override
     protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
     
@@ -59,11 +47,7 @@ public class EntityRocket extends Entity {
         nbttagcompound.setInteger("Age", this.startPosY);
         
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.entity.Entity#onUpdate()
-     */
+
     @Override
     public void onUpdate() {
     

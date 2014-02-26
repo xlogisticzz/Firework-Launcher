@@ -38,10 +38,7 @@ public class RenderRocket extends Render {
         GL11.glPopMatrix();
     }
     
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.client.renderer.entity.Render#doRender(net.minecraft.entity.Entity, double, double, double, float, float)
-     */
+
     @Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
     
@@ -49,11 +46,6 @@ public class RenderRocket extends Render {
     }
     
     // TODO return the correct id depending on the firework type
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.client.renderer.entity.Render#getEntityTexture(net.minecraft.entity.Entity)
-     */
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
     

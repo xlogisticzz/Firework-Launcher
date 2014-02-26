@@ -1,5 +1,7 @@
 package com.xlogisticzz.fireworkLauncher.items;
 
+import com.xlogisticzz.fireworkLauncher.blocks.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -13,22 +15,18 @@ import com.xlogisticzz.fireworkLauncher.lib.Constants;
  */
 public class ItemLauncher extends ItemBlock {
     
-    public ItemLauncher(int id) {
-    
-        super(id);
-        this.setHasSubtypes(true);
+    public ItemLauncher(Block block) {
+        super(ModBlocks.launcherBlock);
+        setHasSubtypes(true);
     }
-    
+
     @Override
     public int getMetadata(int dammage) {
-    
         return dammage;
     }
     
     @Override
-    public String getItemDisplayName(ItemStack par1ItemStack) {
-    
-        return Constants.BlockNames.FIREWORK_LAUNCHER_NAME[par1ItemStack.getItemDamage()];
+    public String getUnlocalizedName(ItemStack par1ItemStack) {
+        return Constants.UnLocalisedNames.BOX + par1ItemStack.getItemDamage();
     }
-    
 }
