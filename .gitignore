@@ -3,6 +3,6 @@
 /eclipse
 /files
 /out
-Firework Launcher.iml
-Firework Launcher.ipr
-Firework Launcher.iws
+*.iml
+*.ipr
+*.iws
