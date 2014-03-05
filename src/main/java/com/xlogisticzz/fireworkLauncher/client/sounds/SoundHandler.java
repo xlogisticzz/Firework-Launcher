@@ -1,30 +1,20 @@
 package com.xlogisticzz.fireworkLauncher.client.sounds;
 
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
+import com.xlogisticzz.fireworkLauncher.lib.Constants;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SoundHandler {
-    
-    public SoundHandler() {
-    
-        MinecraftForge.EVENT_BUS.register(this);
+
+    public static void playOnEntity(Entity entity, String soundName, float volume, float pitch){
+        entity.worldObj.playSoundAtEntity(entity, (Constants.Mod.MODID + ":" + soundName), volume, pitch);
     }
-    
-    @ForgeSubscribe
-    public void onSoundsLoad(SoundLoadEvent event) {
-    
-        for (Sounds sound : Sounds.values()){
-            addSound(event, sound);
-        }
-    }
-    
-    private void addSound(SoundLoadEvent event, Sounds sound) {
-    
-        event.manager.addSound(Sounds.SOUNDS_LOCATION + ":" + sound.getName() + ".ogg");
+
+    public static void playSoundInWorld(World world, double x, double y, double z, String soundName, float volume, float pitch){
+        world.playSoundEffect(x, y, z, (Constants.Mod.MODID + ":" + soundName), volume, pitch);
     }
     
 }

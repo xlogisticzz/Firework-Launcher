@@ -1,0 +1,10 @@
+itemGroup.tabFireworkLauncher=Firework Launcher
+
+tile.fireworkBox0.name=Firework Launcher
+tile.fireworkBox1.name=Firework Launcher
+tile.fireworkBox2.name=Firework Launcher
+tile.fireworkBox3.name=Firework Launcher
+
+item.fireworkCard0.name=Red card
+item.fireworkCard1.name=Green card
+item.fireworkCard2.name=Blue card

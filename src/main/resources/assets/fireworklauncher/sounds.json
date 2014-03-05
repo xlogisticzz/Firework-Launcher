@@ -1,0 +1,8 @@
+{
+    "launch": {
+        "category": "block",
+        "sounds": [
+          "fire"
+        ]
+    }
+}

@@ -4,12 +4,13 @@ import java.util.List;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.xlogisticzz.fireworkLauncher.CreativeTabFireworkLauncher;
@@ -29,94 +30,64 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockLauncher extends BlockContainer {
     
     @SideOnly(Side.CLIENT)
-    private Icon botIcon;
+    private IIcon botIcon;
     @SideOnly(Side.CLIENT)
-    private Icon topIcon;
+    private IIcon topIcon;
     @SideOnly(Side.CLIENT)
-    private Icon[] sideIcons;
+    private IIcon[] sideIcons = new IIcon[Constants.Icons.BOX_SIDE.length];;
     
-    public BlockLauncher(int par1) {
-    
-        super(par1, Material.circuits);
-        this.setCreativeTab(CreativeTabFireworkLauncher.tabFireworkLauncher);
-        this.setHardness(3F);
-        this.setResistance(3F);
-        this.setUnlocalizedName(Constants.UnLocalisedNames.BOX);
+    public BlockLauncher() {
+        super(Material.circuits);
+        setCreativeTab(CreativeTabFireworkLauncher.tabFireworkLauncher);
+        setHardness(3F);
+        setResistance(3F);
+        setBlockName(Constants.UnLocalisedNames.BOX);
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.block.Block#registerIcons(net.minecraft.client.renderer.texture.IconRegister)
-     */
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg) {
-    
-        this.botIcon = reg.registerIcon(Constants.Mod.MODID + ":" + Constants.Icons.BOX_BOT);
-        this.topIcon = reg.registerIcon(Constants.Mod.MODID + ":" + Constants.Icons.BOX_TOP);
-        
-        this.sideIcons = new Icon[Constants.Icons.BOX_SIDE.length];
+    public void registerBlockIcons(IIconRegister reg) {
+        botIcon = reg.registerIcon(Constants.Mod.MODID + ":" + Constants.Icons.BOX_BOT);
+        topIcon = reg.registerIcon(Constants.Mod.MODID + ":" + Constants.Icons.BOX_TOP);
+
         for (int i = 0; i < Constants.Icons.BOX_SIDE.length; i++){
-            this.sideIcons[i] = reg.registerIcon(Constants.Mod.MODID + ":" + Constants.Icons.BOX_SIDE[i]);
+            sideIcons[i] = reg.registerIcon(Constants.Mod.MODID + ":" + Constants.Icons.BOX_SIDE[i]);
         }
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.block.Block#getIcon(int, int)
-     */
+
+
+
     @Override
-    public Icon getIcon(int side, int meta) {
-    
+    public IIcon getIcon(int side, int meta) {
         switch (side) {
-        
             case 0 :
-                return this.botIcon;
-                
+                return botIcon;
             case 1 :
-                return this.topIcon;
-                
+                return topIcon;
             default :
-                return this.sideIcons[meta];
-                
+                return sideIcons[meta];
         }
-        
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.block.Block#damageDropped(int)
-     */
+
     @Override
     public int damageDropped(int metadata) {
-    
         return metadata;
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.block.Block#getSubBlocks(int, net.minecraft.creativetab.CreativeTabs, java.util.List)
-     */
+
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubBlocks(int id, CreativeTabs par2CreativeTabs, List par3List) {
-    
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < Constants.Icons.BOX_SIDE.length; i++){
-            par3List.add(new ItemStack(id, 1, i));
+            par3List.add(new ItemStack(item, 1, i));
         }
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.block.Block#onBlockActivated(net.minecraft.world.World, int, int, int, net.minecraft.entity.player.EntityPlayer, int, float, float, float)
-     */
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-    
         if (player.isSneaking()){
             return false;
         }else{
-            if (world.getBlockId(x, y, z) == ModBlocks.launcherBlock.blockID){
+            if (world.getBlock(x, y, z) == ModBlocks.launcherBlock){
                 int meta = world.getBlockMetadata(x, y, z);
                 if (meta == 0){
                     return false;
@@ -134,15 +105,9 @@ public class BlockLauncher extends BlockContainer {
             return true;
         }
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World)
-     */
+
     @Override
-    public TileEntity createNewTileEntity(World world) {
-    
-        TileEntityLauncher tile = new TileEntityLauncher();
-        return tile;
+    public TileEntity createNewTileEntity(World world, int meta) {
+        return new TileEntityLauncher();
     }
 }
