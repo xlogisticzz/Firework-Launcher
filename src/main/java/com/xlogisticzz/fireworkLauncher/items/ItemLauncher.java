@@ -27,6 +27,6 @@ public class ItemLauncher extends ItemBlock {
     
     @Override
     public String getUnlocalizedName(ItemStack par1ItemStack) {
-        return Constants.UnLocalisedNames.BOX + par1ItemStack.getItemDamage();
+        return "tile." + Constants.UnLocalisedNames.BOX + par1ItemStack.getItemDamage();
     }
 }

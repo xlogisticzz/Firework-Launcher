@@ -2,7 +2,7 @@
     "launch": {
         "category": "block",
         "sounds": [
-            "fire"
+          "fire"
         ]
-    },
+    }
 }

@@ -25,7 +25,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 
-@Mod(modid = Constants.Mod.MODID, name = Constants.Mod.MODID, version = Constants.Mod.VERSION, certificateFingerprint = Constants.Mod.FINGERPRINT)
+@Mod(modid = Constants.Mod.MODID, name = Constants.Mod.MODID, version = Constants.Mod.VERSION)
 public class FireworkLauncher {
     
     @Instance(Constants.Mod.MODID)

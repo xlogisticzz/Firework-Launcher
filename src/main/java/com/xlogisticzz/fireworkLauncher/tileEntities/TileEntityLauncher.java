@@ -53,7 +53,7 @@ public class TileEntityLauncher extends TileEntity {
                     rocket.setlaunchPos(this.xCoord + 0.5F, this.yCoord, this.zCoord + 0.5F);
                     
                     this.worldObj.spawnEntityInWorld(rocket);
-                    SoundHandler.playSoundInWorld(worldObj, (double) xCoord, (double) yCoord, (double) zCoord, "launch", 1, 0, false);
+                    SoundHandler.playSoundInWorld(worldObj, (double) xCoord, (double) yCoord, (double) zCoord, "launch", 1, 0);
 
                     this.timer = 0;
                 }
@@ -75,7 +75,7 @@ public class TileEntityLauncher extends TileEntity {
             float partMotionY = -0.5F + this.rand.nextFloat();
             float partMotionZ = -0.5F + this.rand.nextFloat();
             
-            this.worldObj.spawnParticle("smoke", partX, partY, partZ, partMotionX / 4, partMotionY / 4, partMotionZ / 4);
+            worldObj.spawnParticle("smoke", partX, partY, partZ, partMotionX / 4, partMotionY / 4, partMotionZ / 4);
         }
     }
     

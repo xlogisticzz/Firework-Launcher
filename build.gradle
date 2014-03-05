@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 version = "1.0"
 group= "com.xlogisticzz.fireworkLauncher" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "fireworkLauncher"
+archivesBaseName = "fireworklauncher"
 
 minecraft {
     version = "1.7.2-10.12.0.1034"
